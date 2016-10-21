@@ -1,5 +1,7 @@
-package com.lpereira.observablesample;
+package com.lpereira.observablesample.presentation;
 
+import com.lpereira.observablesample.model.Model;
+import com.lpereira.observablesample.shared.CustomRequestSubscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 

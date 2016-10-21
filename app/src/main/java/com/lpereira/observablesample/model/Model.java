@@ -1,4 +1,4 @@
-package com.lpereira.observablesample;
+package com.lpereira.observablesample.model;
 
 import java.util.Arrays;
 import java.util.List;
