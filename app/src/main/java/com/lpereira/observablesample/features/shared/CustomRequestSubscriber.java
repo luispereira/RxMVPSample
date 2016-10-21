@@ -1,14 +1,14 @@
-package com.lpereira.observablesample.shared;
+package com.lpereira.observablesample.features.shared;
 
-import com.lpereira.observablesample.presentation.IPresenter;
+import com.lpereira.observablesample.presentation.IMainView;
 
 /**
  * @author lpereira on 21/10/2016.
  */
 public class CustomRequestSubscriber<T> extends rx.Subscriber<T> {
-    private final IPresenter mIPresenter;
+    private final IMainView mIPresenter;
 
-    public CustomRequestSubscriber(IPresenter iPresenter) {
+    public CustomRequestSubscriber(IMainView iPresenter) {
         mIPresenter = iPresenter;
     }
 

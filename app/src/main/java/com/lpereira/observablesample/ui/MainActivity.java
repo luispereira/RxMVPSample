@@ -1,23 +1,47 @@
 package com.lpereira.observablesample.ui;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import com.lpereira.observablesample.presentation.IPresenter;
-import com.lpereira.observablesample.presentation.Presenter;
+import android.util.Log;
 import com.lpereira.observablesample.R;
+import com.lpereira.observablesample.features.dagger.components.ActivityComponent;
+import com.lpereira.observablesample.features.dagger.components.DaggerActivityComponent;
+import com.lpereira.observablesample.presentation.IMainView;
+import com.lpereira.observablesample.presentation.MainPresenter;
 
-public class MainActivity extends AppCompatActivity implements IPresenter {
+import javax.inject.Inject;
+
+public class MainActivity extends BaseActivity implements IMainView {
+
+    @Inject MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initializeInjector();
         setContentView(R.layout.activity_main);
 
-        new Presenter(this).requestConfigs();
+        presenter.setView(this);
+        //make the request
+        presenter.requestConfigs();
+    }
+
+    private void initializeInjector() {
+        ActivityComponent activityComponent = DaggerActivityComponent.builder()
+                .appComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .build();
+        activityComponent.inject(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.destroy();
     }
 
     @Override
     public <T> void onSuccess(T result) {
+        Log.d("MainActivity", "Success!");
         //TODO refresh UI
     }
 
