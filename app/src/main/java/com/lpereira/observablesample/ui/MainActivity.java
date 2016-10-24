@@ -9,6 +9,9 @@ import com.lpereira.observablesample.presentation.IMainView;
 import com.lpereira.observablesample.presentation.MainPresenter;
 
 import javax.inject.Inject;
+import java.util.List;
+
+import static android.view.View.GONE;
 
 public class MainActivity extends BaseActivity implements IMainView {
 
@@ -42,6 +45,9 @@ public class MainActivity extends BaseActivity implements IMainView {
     @Override
     public <T> void onSuccess(T result) {
         Log.d("MainActivity", "Success!");
+        if(((List<String>)result).contains("1")){
+            findViewById(R.id.textExample).setVisibility(GONE);
+        }
         //TODO refresh UI
     }
 
