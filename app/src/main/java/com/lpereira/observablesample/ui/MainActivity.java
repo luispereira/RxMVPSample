@@ -2,6 +2,7 @@ package com.lpereira.observablesample.ui;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import com.lpereira.observablesample.R;
 import com.lpereira.observablesample.features.dagger.components.ActivityComponent;
 import com.lpereira.observablesample.features.dagger.components.DaggerActivityComponent;
@@ -28,6 +29,11 @@ public class MainActivity extends BaseActivity implements IMainView {
         presenter.requestConfigs();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     private void initializeInjector() {
         ActivityComponent activityComponent = DaggerActivityComponent.builder()
                 .appComponent(getApplicationComponent())
@@ -47,8 +53,9 @@ public class MainActivity extends BaseActivity implements IMainView {
         Log.d("MainActivity", "Success!");
         if(((List<String>)result).contains("1")){
             findViewById(R.id.textExample).setVisibility(GONE);
+        }else {
+            findViewById(R.id.textExample).setVisibility(View.VISIBLE);
         }
-        //TODO refresh UI
     }
 
     @Override

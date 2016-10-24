@@ -1,6 +1,5 @@
 package com.lpereira.observablesample;
 
-import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
@@ -57,6 +56,6 @@ public class ExampleInstrumentedTest {
             }
         }).when(mActivity).onSuccess(Arrays.asList("0", "2"));
 
-        ViewMatchers.withId(R.id.textExample).matches(ViewAssertions.doesNotExist());
+        ViewMatchers.withId(R.id.textExample).matches(ViewMatchers.isDisplayed());
     }
 }
